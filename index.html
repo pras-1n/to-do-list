@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="jp">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>やることリスト</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<main class="app-container">
+			<h1 class="heading">やることリスト</h1>
+
+			<button id="theme-toggle" aria-label="Toggle Dark Mode">☀️</button>
+
+			<div class="input-group">
+				<input
+					type="text"
+					id="todo-input"
+					placeholder="新しいタスクを追加してください"
+				/>
+				<button id="add-btn">追加</button>
+			</div>
+
+			<ul id="todo-list"></ul>
+		</main>
+		<script src="script.js"></script>
+	</body>
+</html>

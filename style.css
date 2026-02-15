@@ -1,0 +1,140 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+:root {
+	--bg-body: #121212;
+	--bg-container: #1e1e1e;
+	--text-main: #e0e0e0;
+	--input-bg: #2c2c2c;
+	--border-color: #333;
+	--list-item-bg: #252525;
+	--shadow: rgba(0, 0, 0, 0.5);
+	--accent: #5cb85c;
+}
+
+.light-mode {
+	--bg-body: #494949;
+	--bg-container: #ffffff;
+	--text-main: #333333;
+	--input-bg: #ffffff;
+	--border-color: #e0e0e0;
+	--list-item-bg: #f9f9f9;
+	--shadow: rgba(0, 0, 0, 0.1);
+	/*--accent: #5cb85c;*/
+}
+
+body {
+	font-family: system-ui, sans-serif;
+	line-height: 1.6;
+	min-height: 100vh;
+	-webkit-font-smoothing: antialiased;
+	background-color: var(--bg-body);
+	color: var(--text-main);
+	transition:
+		background-color 0.3s,
+		color 0.3s;
+
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	padding-top: 5rem;
+}
+
+.app-container {
+	width: 100%;
+	max-width: 400px;
+	background: white;
+	padding: 2rem;
+	border-radius: 12px;
+
+	box-shadow: 0 4px 6px var(--shadow);
+
+	background: var(bg-container);
+}
+
+.heading {
+	/*
+	font-weight: 700;
+	text-align: center;
+	margin-bottom: 2rem;*/
+	margin-bottom: 0;
+}
+
+.input-group {
+	/*justify-content: center;*/
+	display: flex;
+	gap: 10px;
+	margin-bottom: 2rem;
+}
+
+input[type="text"] {
+	background: var(--input-bg);
+	color: var(--text-main);
+	border: 2px solid var(--border-color);
+
+	flex: 1;
+	padding: 0.8rem;
+	border: 2px solid #e0e0e0;
+	border-radius: 8px;
+	outline: none;
+	transition: border-color 0.2s;
+}
+
+input[type="text"]:focus {
+	border-color: #6e8934;
+}
+
+#add-btn {
+	padding: 0.8rem 1.5rem;
+	background-color: #7a983a;
+	color: white;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	font-weight: 600;
+	transition: background 0.2s;
+}
+
+#add-btn:hover {
+	background-color: #6e8934;
+}
+
+#todo-list {
+	list-style: none;
+	margin-top: 1rem;
+}
+
+#todo-list li {
+	background: var(--list-item-bg);
+	padding: 10px 15px;
+	margin-bottom: 8px;
+	border-radius: 6px;
+	border: 1px solid var(--border-color);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	color: var(--text-main);
+	border-left: 4px solid var(--accent);
+}
+
+.header-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 2rem;
+}
+
+#theme-toggle {
+	background: transparent;
+	border: 1px solid var(--border-color);
+	color: var(text-main);
+	padding: 5px 10px;
+	border-radius: 8px;
+	cursor: pointer;
+	font-size: 1.2rem;
+}
