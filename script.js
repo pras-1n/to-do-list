@@ -3,21 +3,56 @@ const addBtn = document.getElementById("add-btn");
 const todoList = document.getElementById("todo-list");
 const themeToggle = document.getElementById("theme-toggle");
 
-function addTask() {
-	const taskText = input.value.trim();
+function addTask(text = null, isCompleted = false) {
+	const taskText = text || input.value.trim();
+	if (taskText === "") return;
 
-	if (taskText !== "") {
-		const li = document.createElement("li");
-		li.textContent = taskText;
-		todoList.appendChild(li);
+	const li = document.createElement("li");
+	if (isCompleted) li.classList.add("completed"); //if loaded from memory and was previously
+
+	li.innerHTML = `
+			<span>${taskText}</span>
+			<button class="delete-btn">削除</button>
+		`;
+
+	li.querySelector("span").addEventListener("click", () => {
+		li.classList.toggle("completed");
+		saveTasks();
+	});
+
+	li.querySelector(".delete-btn").addEventListener("click", () => {
+		li.remove();
+		saveTasks();
+	});
+
+	// li.textContent = taskText; //replace this with the above line
+	todoList.appendChild(li);
+	if (!text) {
 		input.value = "";
 		input.focus();
-	} else {
-		alert("新しいタスクを追加してください！");
+		saveTasks();
 	}
+
+	// } else {
+	// 	alert("新しいタスクを追加してください！");
+	// }
 }
 
-addBtn.addEventListener("click", addTask);
+function saveTasks() {
+	const tasks = [];
+	document.querySelectorAll("#todo-list li").forEach((li) => {
+		tasks.push({
+			text: li.querySelector("span").textContent,
+			completed: li.classList.contains("completed"),
+		});
+	});
+	localStorage.setItem("todos", JSON.stringify(tasks));
+}
+
+const savedTasks = JSON.parse(localStorage.getItem("todos") || "[]");
+savedTasks.forEach((task) => addTask(task.text, task.completed));
+
+addBtn.addEventListener("click", () => addTask());
 
 input.addEventListener("keypress", function (e) {
 	if (e.key === "Enter") {
