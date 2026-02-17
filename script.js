@@ -7,31 +7,57 @@ function addTask(text = null, isCompleted = false) {
 	const taskText = text || input.value.trim();
 	if (taskText === "") return;
 
-	const li = document.createElement("li");
-	if (isCompleted) li.classList.add("completed"); //if loaded from memory and was previously
+	const template = document.getElementById("task-template");
 
-	li.innerHTML = `
-			<span>${taskText}</span>
-			<button class="delete-btn">削除</button>
-		`;
+	const clone = template.content.cloneNode(true);
 
-	li.querySelector("span").addEventListener("click", () => {
+	const li = clone.querySelector("li");
+	const span = clone.querySelector("span");
+	const btn = clone.querySelector(".delete-btn");
+
+	span.addEventListener("click", () => {
 		li.classList.toggle("completed");
 		saveTasks();
 	});
 
-	li.querySelector(".delete-btn").addEventListener("click", () => {
+	btn.addEventListener("click", () => {
 		li.remove();
 		saveTasks();
 	});
 
-	// li.textContent = taskText; //replace this with the above line
 	todoList.appendChild(li);
+
 	if (!text) {
 		input.value = "";
-		input.focus();
+		input.focus = "";
 		saveTasks();
 	}
+
+	// const li = document.createElement("li");
+	// if (isCompleted) li.classList.add("completed"); //if loaded from memory and was previously
+
+	// li.innerHTML = `
+	// 		<span>${taskText}</span>
+	// 		<button class="delete-btn">削除</button>
+	// 	`;
+
+	// li.querySelector("span").addEventListener("click", () => {
+	// 	li.classList.toggle("completed");
+	// 	saveTasks();
+	// });
+
+	// li.querySelector(".delete-btn").addEventListener("click", () => {
+	// 	li.remove();
+	// 	saveTasks();
+	// });
+
+	// // li.textContent = taskText; //replace this with the above line
+	// todoList.appendChild(li);
+	// if (!text) {
+	// 	input.value = "";
+	// 	input.focus();
+	// 	saveTasks();
+	// }
 
 	// } else {
 	// 	alert("新しいタスクを追加してください！");
