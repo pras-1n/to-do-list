@@ -71,7 +71,7 @@ body {
 	/*justify-content: center;*/
 	display: flex;
 	gap: 10px;
-	margin-bottom: 2rem;
+	margin-bottom: 1rem;
 }
 
 input[type="text"] {
@@ -166,4 +166,25 @@ input[type="text"]:focus {
 
 .delete-btn:hover {
 	background: #ff3333;
+}
+
+#error-msg {
+	color: #ff4444;
+	font-size: 0.9rem;
+	height: 20px;
+	margin-top: 0;
+	margin-left: 5px;
+	font-weight: bold;
+}
+
+.edit-input {
+	font-size: inherit;
+	font-family: inherit;
+	padding: 2px 5px;
+	border: 1px solid #3498db;
+	border-radius: 4px;
+	background: transparent;
+	color: inherit;
+	width: 70%;
+	outline: none;
 }

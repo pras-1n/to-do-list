@@ -2,10 +2,16 @@ const input = document.getElementById("todo-input");
 const addBtn = document.getElementById("add-btn");
 const todoList = document.getElementById("todo-list");
 const themeToggle = document.getElementById("theme-toggle");
+const errorMsg = document.getElementById("error-msg");
 
 function addTask(text = null, isCompleted = false) {
 	const taskText = text || input.value.trim();
-	if (taskText === "") return;
+	if (taskText === "") {
+		errorMsg.textContent = "タスクを入力してください！";
+		return;
+	} else {
+		errorMsg.textContent = "";
+	}
 
 	const template = document.getElementById("task-template");
 
@@ -14,6 +20,12 @@ function addTask(text = null, isCompleted = false) {
 	const li = clone.querySelector("li");
 	const span = clone.querySelector("span");
 	const btn = clone.querySelector(".delete-btn");
+
+	span.textContent = taskText;
+
+	if (isCompleted) {
+		li.classList.add("completed");
+	}
 
 	span.addEventListener("click", () => {
 		li.classList.toggle("completed");
@@ -29,7 +41,7 @@ function addTask(text = null, isCompleted = false) {
 
 	if (!text) {
 		input.value = "";
-		input.focus = "";
+		input.focus();
 		saveTasks();
 	}
 
@@ -62,6 +74,32 @@ function addTask(text = null, isCompleted = false) {
 	// } else {
 	// 	alert("新しいタスクを追加してください！");
 	// }
+
+	span.addEventListener("dblclick", () => {
+		const editInput = document.createElement("input");
+		editInput.type = "text";
+		editInput.value = span.textContent;
+		editInput.classList.add("edit-input");
+
+		span.replaceWith(editInput);
+		editInput.focus();
+
+		const saveEdit = () => {
+			const newText = editInput.value.trim();
+			if (newText !== "") {
+				span.textContent = newText;
+				saveTasks();
+			}
+
+			editInput.replaceWith(span);
+		};
+
+		editInput.addEventListener("keypress", (e) => {
+			if (e.key === "Enter") saveEdit();
+		});
+
+		editInput.addEventListener("blur", saveEdit);
+	});
 }
 
 function saveTasks() {
