@@ -53,8 +53,6 @@ body {
 	border-radius: 12px;
 
 	box-shadow: 0 4px 6px var(--shadow);
-
-	background: var(bg-container);
 }
 
 .heading {
@@ -71,7 +69,7 @@ body {
 	/*justify-content: center;*/
 	display: flex;
 	gap: 10px;
-	margin-bottom: 1rem;
+	margin-bottom: 0.5rem;
 }
 
 input[type="text"] {
@@ -81,7 +79,6 @@ input[type="text"] {
 
 	flex: 1;
 	padding: 0.8rem;
-	border: 2px solid #e0e0e0;
 	border-radius: 8px;
 	outline: none;
 	transition: border-color 0.2s;
@@ -108,7 +105,7 @@ input[type="text"]:focus {
 
 #todo-list {
 	list-style: none;
-	margin-top: 1rem;
+	margin-top: 0.5rem;
 
 	li {
 		background: var(--list-item-bg);
@@ -121,6 +118,8 @@ input[type="text"]:focus {
 		align-items: center;
 		color: var(--text-main);
 		/*border-left: 4px solid var(--accent);*/
+
+		gap: 10px;
 	}
 
 	.completed span {
@@ -178,13 +177,23 @@ input[type="text"]:focus {
 }
 
 .edit-input {
+	flex: 1; /*takes all space automatically*/
 	font-size: inherit;
 	font-family: inherit;
-	padding: 2px 5px;
+	padding: 4px 8px !important;
 	border: 1px solid #3498db;
 	border-radius: 4px;
 	background: transparent;
 	color: inherit;
-	width: 70%;
+	width: auto;
 	outline: none;
+}
+
+#theme-toggle i {
+	transition: transform 0.5s ease;
+}
+
+.light-mode #theme-toggle i {
+	transform: rotate(-30deg);
+	/*color: #333;*/
 }

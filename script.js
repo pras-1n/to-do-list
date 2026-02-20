@@ -75,6 +75,32 @@ function addTask(text = null, isCompleted = false) {
 	// 	alert("新しいタスクを追加してください！");
 	// }
 
+	// span.addEventListener("dblclick", () => {
+	// 	const editInput = document.createElement("input");
+	// 	editInput.type = "text";
+	// 	editInput.value = span.textContent;
+	// 	editInput.classList.add("edit-input");
+
+	// 	span.replaceWith(editInput);
+	// 	editInput.focus();
+
+	// 	const saveEdit = () => {
+	// 		const newText = editInput.value.trim();
+	// 		if (newText !== "") {
+	// 			span.textContent = newText;
+	// 			saveTasks();
+	// 		}
+
+	// 		editInput.replaceWith(span);
+	// 	};
+
+	// 	editInput.addEventListener("keypress", (e) => {
+	// 		if (e.key === "Enter") saveEdit();
+	// 	});
+
+	// 	editInput.addEventListener("blur", saveEdit);
+	// });
+
 	span.addEventListener("dblclick", () => {
 		const editInput = document.createElement("input");
 		editInput.type = "text";
@@ -85,17 +111,25 @@ function addTask(text = null, isCompleted = false) {
 		editInput.focus();
 
 		const saveEdit = () => {
+			if (!editInput.isConnected) return;
+
 			const newText = editInput.value.trim();
+
 			if (newText !== "") {
 				span.textContent = newText;
-				saveTasks();
 			}
 
 			editInput.replaceWith(span);
+
+			if (newText !== "") {
+				saveTasks();
+			}
 		};
 
 		editInput.addEventListener("keypress", (e) => {
-			if (e.key === "Enter") saveEdit();
+			if (e.key === "Enter") {
+				editInput.blur();
+			}
 		});
 
 		editInput.addEventListener("blur", saveEdit);
@@ -126,4 +160,12 @@ input.addEventListener("keypress", function (e) {
 
 themeToggle.addEventListener("click", () => {
 	document.body.classList.toggle("light-mode");
+
+	const icon = themeToggle.querySelector("i");
+
+	if (document.body.classList.contains("light-mode")) {
+		icon.classList.replace("fa-sun", "fa-moon");
+	} else {
+		icon.classList.replace("fa-moon", "fa-sun");
+	}
 });
