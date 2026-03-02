@@ -4,6 +4,50 @@ const todoList = document.getElementById("todo-list");
 const themeToggle = document.getElementById("theme-toggle");
 const errorMsg = document.getElementById("error-msg");
 
+const translations = {
+	ja: {
+		title: "やることリスト",
+		heading: "やることリスト",
+		placeholder: "新しいタスクを追加してください",
+		addBtn: "追加",
+		deleteBtn: "削除",
+		errorMsg: "タスクを入力してください！",
+		langToggleBtn: "English"
+	},
+	en: {
+		title: "To-Do List",
+		heading: "To-Do List",
+		placeholder: "Add a new task",
+		addBtn: "Add",
+		deleteBtn: "Delete",
+		errorMsg: "Please enter a task!",
+		langToggleBtn: "日本語"
+	}
+};
+
+let currentLang = localStorage.getItem("lang") || "ja";
+
+function updateLanguage() {
+	const t = translations[currentLang];
+
+	document.title = t.title;
+	document.querySelector(".heading").textContent = t.heading;
+	input.placeholder = t.placeholder;
+	addBtn.textContent = t.addBtn;
+	langToggle.textContent = t.langToggleBtn;
+
+	if (errorMsg.textContent !== "") {
+		errorMsg.textContent = t.errorMsg;
+	}
+
+	const template = document.getElementById("task-template");
+	template.content.querySelector(".delete-btn").textContent = t.deleteBtn;
+
+	document.querySelectorAll(".delete-btn").forEach(btn => {
+		btn.textContent = t.deleteBtn;
+	});
+}
+
 function addTask(text = null, isCompleted = false) {
 	const taskText = text || input.value.trim();
 	if (taskText === "") {
