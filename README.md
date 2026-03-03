@@ -1,8 +1,8 @@
-#To-Do List Applications
+# To-Do List Applications
 
 This repository contains the source code for a standard web-based task management application. This tool fulfills that requirement.
 
-##Overview
+## Overview
 
 The application is built to handle daily tasks. It operates entirely on the client side by utilizing the browser's local storage to ensure that your data persists between sessions. It is functional, responsive, and does exactly what it is designed to do.
 
