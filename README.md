@@ -19,19 +19,19 @@ The application is built to handle daily tasks. It operates entirely on the clie
 
 There is no complex setup or build process required for this project. 
 
-1. Clone or download this repository to your local machine.
-2. Ensure the `index.html`, `style.css`, and `script.js` files are in the same directory.
-3. Open the `index.html` file in a standard, modern web browser.
+1. Clone or download this repository to your local device.
+2. Make sure the `index.html`, `style.css`, and `script.js` files are in the same directory.
+3. Open `index.html` file in a standard, modern web browser.
 4. Input your tasks and proceed with your work.
 
 ## Technical Details
 
 The application is written using fundamental web technologies:
 * HTML5 for the structure.
-* CSS3 for styling, utilizing CSS variables to handle the theme transitions.
+* CSS3 for styling and utilizing CSS variables to handle the theme transitions.
 * Vanilla JavaScript for the logic, DOM manipulation, and local storage management.
 
-Font Awesome is used for the theme icon, and Google Fonts is used for the typography.
+Font Awesome is used for the theme icon and Google Fonts is used for the typography.
 
 ## Maintenance
 
