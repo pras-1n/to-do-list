@@ -2,6 +2,7 @@ const input = document.getElementById("todo-input");
 const addBtn = document.getElementById("add-btn");
 const todoList = document.getElementById("todo-list");
 const themeToggle = document.getElementById("theme-toggle");
+const langToggle = document.getElementById("lang-toggle")
 const errorMsg = document.getElementById("error-msg");
 
 const translations = {
@@ -48,10 +49,18 @@ function updateLanguage() {
 	});
 }
 
+langToggle.addEventListener("click", () => {
+	currentLang = currentLang === "ja" ? "en" : "ja";
+	localStorage.setItem("lang", currentLang);
+	updateLanguage();
+});
+
+updateLanguage();
+
 function addTask(text = null, isCompleted = false) {
 	const taskText = text || input.value.trim();
 	if (taskText === "") {
-		errorMsg.textContent = "タスクを入力してください！";
+		errorMsg.textContent = translations[currentLang].errorMsg;
 		return;
 	} else {
 		errorMsg.textContent = "";

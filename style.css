@@ -10,7 +10,7 @@
 	--bg-body: #121212;
 	--bg-container: #1e1e1e;
 	--text-main: #e0e0e0;
-	--input-bg: #2c2c2c;
+	--input-bg: #2c2c2c;	
 	--border-color: #333;
 	--list-item-bg: #252525;
 	--shadow: rgba(0, 0, 0, 0.5);
@@ -204,4 +204,27 @@ input[type="text"]:focus {
 .light-mode #theme-toggle i {
 	transform: rotate(-30deg);
 	/*color: #333;*/
+}
+
+#lang-toggle {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+
+	background: transparent;
+	color: var(--text-main);
+	border: 2px solid var(--border-color);
+	padding: 4px 12px;
+	border-radius: 8px;
+	cursor: pointer;
+	font-size: 0.9rem;
+	font-family: inherit;
+	font-weight: 600;
+	z-index: 1000;
+	transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+}
+
+#lang-toggle:hover {
+	border-color: #6e8934;
+	background-color: var(--input-bg);
 }
